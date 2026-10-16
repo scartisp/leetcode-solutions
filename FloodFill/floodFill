@@ -1,0 +1,16 @@
+class Solution:
+    def floodFill(self, image: list[list[int]], sr: int, sc: int, color: int) -> list[list[int]]:
+        def recur(x, y):
+            if x < len(image[0]) and x > -1 and y < len(image) and y > -1 and image[y][x] != color and image[y][x] == currColor:
+                image[y][x] = color
+            else:
+                return
+
+            recur(x-1, y)
+            recur(x+1, y)
+            recur(x,y-1)
+            recur(x,y+1)
+        
+        currColor = image[sr][sc]
+        recur(sc,sr)
+        return image
